@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Link from "next/link";
 import styled from "styled-components";
 import Image from "next/image";
-import logo from "./assests/logo.jpg";
+import Logo from "./assests/Logo.jpg";
 import SearchForm from "./SearchForm";
 
 const AppLayout = ({ children }) => {
@@ -12,7 +12,7 @@ const AppLayout = ({ children }) => {
       <Header>
         <Div1>
           <Div2>
-            <Image src={logo} alt="로고" />
+            <Image src={Logo} alt="로고" />
           </Div2>
           <Div3></Div3>
           <Div4>
@@ -39,7 +39,7 @@ const AppLayout = ({ children }) => {
               </Li>
               <Li log>
                 <LoginBack>
-                  <Link href="/">
+                  <Link href="/signup">
                     <Atag>로그인</Atag>
                   </Link>
                 </LoginBack>
@@ -92,7 +92,7 @@ const Atag = styled.a`
 `;
 
 const Li = styled.li`
-  /* margin-top: 5px; */
+  margin-top: 12px;
   margin-left: ${(props) => (props.log ? "25px" : "50px")};
   display: inline-block;
 `;

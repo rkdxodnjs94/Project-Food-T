@@ -25,15 +25,15 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/map": [
+    "/business": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/map.js"
+      "static/chunks/pages/business.js"
     ],
-    "/mypage/notification": [
+    "/signup": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/mypage/notification.js"
+      "static/chunks/pages/signup.js"
     ]
   },
   "ampFirstPages": []
