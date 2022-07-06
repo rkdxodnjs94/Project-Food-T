@@ -1,5 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { createWrapper } from "next-redux-wrapper";
 import rootReducer from "../reducers";
+
+const isDev = process.env.NODE_ENV === "development";
 
 const createStore = () => {
   // 미들웨어
@@ -11,4 +14,8 @@ const createStore = () => {
   return store;
 };
 
-export default createStore;
+const wrapper = createWrapper(createStore, {
+  debug: isDev,
+});
+
+export default wrapper;

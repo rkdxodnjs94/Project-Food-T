@@ -2,38 +2,38 @@ import React from "react";
 import styled from "styled-components";
 import Image from "next/image";
 import SearchButton from "./assests/SearchButton.png";
+import BlueBanner from "./UI/BlueBanner";
 // import { SearchOutlined } from "@ant-design/icons";
 // import { Button } from "antd";
 
 const SearchForm = () => {
   return (
-    <DivMain>
-      <Div1>Food T 에 오신걸 환영합니다.</Div1>
-      <Div2>
-        <Div2_1>
-          <Div2_1_1>
+    <BlueBanner>
+      <Main_TopDiv>Food T 에 오신걸 환영합니다.</Main_TopDiv>
+      <Main_BottomDiv>
+        <BottomCenterDiv>
+          <ListDiv>
             <Ul>
               <Li>관악구</Li>
               <Li>봉천동</Li>
             </Ul>
-          </Div2_1_1>
-          <Div2_1_2>
-            {/* <Div2_1_3> */}
+          </ListDiv>
+          <InputDiv>
             <Input type="text"></Input>
-            <ButtonDiv>
+            <SearchButtonDiv>
               <Image src={SearchButton} alt="버튼" />
-            </ButtonDiv>
-            {/* </Div2_1_3> */}
-          </Div2_1_2>
-        </Div2_1>
-      </Div2>
-    </DivMain>
+            </SearchButtonDiv>
+          </InputDiv>
+        </BottomCenterDiv>
+      </Main_BottomDiv>
+    </BlueBanner>
   );
 };
 
 export default SearchForm;
 
-const ButtonDiv = styled.div`
+// Search Button
+const SearchButtonDiv = styled.div`
   margin: auto;
   margin-left: -15px;
   cursor: pointer;
@@ -61,13 +61,8 @@ const Ul = styled.ul`
   list-style: none;
 `;
 
-// 검색창 백그라운드
-// const Div2_1_3 = styled.div`
-
-// `;
-
-// 검색창 백그라운드
-const Div2_1_2 = styled.div`
+// Search Back
+const InputDiv = styled.div`
   margin-top: 5px;
   width: 601px;
   height: 83px;
@@ -80,8 +75,8 @@ const Div2_1_2 = styled.div`
   border-radius: 15px;
 `;
 
-// div 아래
-const Div2_1_1 = styled.div`
+// List div
+const ListDiv = styled.div`
   width: 310px;
   height: 93px;
   display: flex;
@@ -90,8 +85,8 @@ const Div2_1_1 = styled.div`
   /* background: #b16a6a; */
 `;
 
-// div 아래
-const Div2_1 = styled.div`
+// Bottom Center div
+const BottomCenterDiv = styled.div`
   width: 1155px;
   height: 93px;
 
@@ -100,8 +95,8 @@ const Div2_1 = styled.div`
   /* background: #d9d9d9; */
 `;
 
-// div 아래
-const Div2 = styled.div`
+// Main Bottom div
+const Main_BottomDiv = styled.div`
   display: flex;
   justify-content: center;
   width: 1920px;
@@ -110,8 +105,8 @@ const Div2 = styled.div`
   /* background: #b54a4a; */
 `;
 
-// div 위
-const Div1 = styled.div`
+// Main Top div
+const Main_TopDiv = styled.div`
   display: table-cell;
   text-align: center;
   vertical-align: bottom;
@@ -131,14 +126,4 @@ const Div1 = styled.div`
   line-height: 19px;
 
   color: #183c72; */
-`;
-
-// 메인 div
-const DivMain = styled.div`
-  position: absolute;
-  width: 1920px;
-  height: 163px;
-
-  background: #53b3ea;
-  border-radius: 12px;
 `;

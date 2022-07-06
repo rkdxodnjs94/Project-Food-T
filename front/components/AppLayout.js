@@ -1,61 +1,100 @@
-import React from "react";
+import React, { useState, useCallback } from "react";
+import Router from "next/router";
+import Image from "next/image";
+
+import { useSelector } from "react-redux";
+import { userActions } from "../reducers/user";
+import { useDispatch } from "react-redux";
+
 import PropTypes from "prop-types";
 import Link from "next/link";
 import styled from "styled-components";
-import Image from "next/image";
+
 import Logo from "./assests/Logo.jpg";
-import SearchForm from "./SearchForm";
 
 const AppLayout = ({ children }) => {
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const dispatch = useDispatch();
+  const { isLoggedIn } = useSelector((state) => state.user);
+
+  const onLogoutHandelr = useCallback((e) => {
+    e.preventDefault();
+    dispatch(userActions.logout());
+    Router.push("/");
+  }, []);
+
+  const onIndexRoute = useCallback((e) => {
+    e.preventDefault();
+    Router.push("/");
+  }, []);
+
   return (
     <>
       <Header>
-        <Div1>
-          <Div2>
-            <Image src={Logo} alt="로고" />
-          </Div2>
-          <Div3></Div3>
-          <Div4>
+        <MainDiv>
+          <ImageDiv>
+            <Image onClick={onIndexRoute} src={Logo} alt="로고" />
+          </ImageDiv>
+          <LeftMarginDiv />
+          <BusinessDiv>
             <Link href="/business">
               <Atag>Business</Atag>
             </Link>
-          </Div4>
-          <Div5>
+          </BusinessDiv>
+          <ListDiv>
             <Ul>
-              <Li>
-                <Link href="/map">
-                  <Atag>지도</Atag>
-                </Link>
-              </Li>
-              <Li>
-                <Link href="/mypage/notification">
-                  <Atag>알림</Atag>
-                </Link>
-              </Li>
-              <Li>
-                <Link href="/mypage/profile">
-                  <Atag>내정보</Atag>
-                </Link>
-              </Li>
-              <Li log>
-                <LoginBack>
-                  <Link href="/signup">
-                    <Atag>로그인</Atag>
+              {isLoggedIn && (
+                <Li>
+                  <Link href="/map">
+                    <Atag>지도</Atag>
                   </Link>
-                </LoginBack>
-              </Li>
-              <Li log>
-                <LoginBack>
-                  <Link href="/">
-                    <Atag>회원가입</Atag>
+                </Li>
+              )}
+              {isLoggedIn && (
+                <Li>
+                  <Link href="/mypage/notification">
+                    <Atag>알림</Atag>
                   </Link>
-                </LoginBack>
-              </Li>
+                </Li>
+              )}
+              {isLoggedIn && (
+                <Li>
+                  <Link href="/mypage/profile">
+                    <Atag>내 정보</Atag>
+                  </Link>
+                </Li>
+              )}
+              {!isLoggedIn && (
+                <Li log>
+                  <LoginBack>
+                    <Link href="/signup">
+                      <Atag>로그인</Atag>
+                    </Link>
+                  </LoginBack>
+                </Li>
+              )}
+              {!isLoggedIn && (
+                <Li log>
+                  <LoginBack>
+                    <Link href="/">
+                      <Atag>회원가입</Atag>
+                    </Link>
+                  </LoginBack>
+                </Li>
+              )}
+              {isLoggedIn && (
+                <Li log>
+                  <LoginBack>
+                    <LogoutButton onClick={onLogoutHandelr}>
+                      로그아웃
+                    </LogoutButton>
+                  </LoginBack>
+                </Li>
+              )}
             </Ul>
-          </Div5>
-        </Div1>
+          </ListDiv>
+        </MainDiv>
       </Header>
-      <SearchForm></SearchForm>
       <div>{children}</div>
     </>
   );
@@ -66,6 +105,18 @@ AppLayout.propTypes = {
 };
 
 export default AppLayout;
+
+const LogoutButton = styled.button`
+  border: 0;
+  background: #a1dbdf;
+  font-family: "Inter";
+  font-style: normal;
+  /* font-weight: 400px; */
+  font-size: 15px;
+  /* identical to box height */
+  /* text-align: center; */
+  cursor: pointer;
+`;
 
 const LoginBack = styled.div`
   width: 88px;
@@ -102,7 +153,7 @@ const Ul = styled.ul`
 `;
 
 // 메뉴 리스트
-const Div5 = styled.div`
+const ListDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -113,7 +164,7 @@ const Div5 = styled.div`
 `;
 
 // 사업 신청
-const Div4 = styled.div`
+const BusinessDiv = styled.div`
   display: flex;
   /* flex-direction: column; */
   align-items: center;
@@ -125,7 +176,7 @@ const Div4 = styled.div`
 `;
 
 // 왼쪽 여백
-const Div3 = styled.div`
+const LeftMarginDiv = styled.div`
   width: 590px;
   height: 114px;
   /* background: #8a4c4c; */
@@ -133,7 +184,7 @@ const Div3 = styled.div`
 `;
 
 // 로고
-const Div2 = styled.div`
+const ImageDiv = styled.div`
   width: 300px;
   height: 114px;
   /* background: #bbb6b6; */
@@ -142,7 +193,7 @@ const Div2 = styled.div`
   cursor: pointer;
 `;
 
-const Div1 = styled.div`
+const MainDiv = styled.div`
   /* 헤더 센터 */
   /* width: 1491px; */
   height: 114px;

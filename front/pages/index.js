@@ -1,10 +1,11 @@
 import React from "react";
 import AppLayout from "../components/AppLayout";
+import SearchForm from "../components/SearchForm";
 
 const Home = () => {
   return (
     <AppLayout>
-      <div>프로젝트 푸티</div>
+      <SearchForm />
     </AppLayout>
   );
 };
